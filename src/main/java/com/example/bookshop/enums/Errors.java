@@ -15,5 +15,5 @@ public enum Errors {
     }
 
     @Getter
-    private int code;
+    private final int code;
 }
