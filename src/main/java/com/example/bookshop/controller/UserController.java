@@ -37,8 +37,12 @@ public class UserController {
     }
 
     @GetMapping("/get/{name}")
-    public User getUser(@PathVariable String name){
-        return userService.getUser(name);
+    public ResponseEntity<User> getUser(@PathVariable String name){
+        var user = userService.getUser(name);
+        if (user.getName() == null) {
+            return ResponseEntity.badRequest().body(user);
+        }
+        return ResponseEntity.ok(user);
     }
 
     @GetMapping("/get_all")

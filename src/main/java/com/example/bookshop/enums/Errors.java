@@ -1,6 +1,6 @@
 package com.example.bookshop.enums;
 
-import lombok.Getter;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum Errors {
     BOOK_NOT_FOUND(1),
@@ -14,6 +14,10 @@ public enum Errors {
         this.code = code;
     }
 
-    @Getter
     private final int code;
+
+    @JsonValue
+    public int getCode() {
+        return code;
+    }
 }

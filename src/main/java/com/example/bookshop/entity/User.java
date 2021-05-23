@@ -23,7 +23,7 @@ public class User {
     @Column(unique = true)
     private UUID id;
 
-    private double money;
+    private Double money;
 
     @Column(unique = true)
     private String name;
