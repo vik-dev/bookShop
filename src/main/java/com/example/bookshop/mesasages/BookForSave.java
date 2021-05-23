@@ -8,12 +8,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BookForSave {
-    private String price;
+    private double price;
     private String name;
 
     public Book convertToBook() {
         var book = new Book();
-        book.setPrice(Double.parseDouble(price));
+        book.setPrice(price);
         book.setName(name);
         return book;
     }

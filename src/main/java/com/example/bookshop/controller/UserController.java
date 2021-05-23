@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -37,6 +39,11 @@ public class UserController {
     @GetMapping("/get/{name}")
     public User getUser(@PathVariable String name){
         return userService.getUser(name);
+    }
+
+    @GetMapping("/get_all")
+    public List<User> getAll(){
+        return userService.getAll();
     }
 
 }
