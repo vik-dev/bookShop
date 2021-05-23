@@ -19,9 +19,11 @@ import java.util.UUID;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Table(name = "book")
 public class Book {
+
     @Id
     @GeneratedValue
-    private UUID id;
+    @Column(unique=true)
+    private Integer id;
 
     @NotNull
     private double price;

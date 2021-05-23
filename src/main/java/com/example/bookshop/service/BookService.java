@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,13 +29,19 @@ public class BookService {
 
     public ResultMessage saveBook(@Validated Book book) {
         var resultMessage = new ResultMessage();
-        List<Book> byId = (List<Book>) bookRepository.findByName(book.getName());
-        if (!byId.isEmpty()) {
+        Optional<Book> byId = bookRepository.findByName(book.getName());
+        if (byId.isPresent()) {
             resultMessage.appendError(Errors.BOOK_ALREADY_EXISTS);
         } else {
             bookRepository.save(book);
         }
         return resultMessage;
+    }
+
+    @Transactional
+    public void deleteBook(String name){
+        Optional<Book> byName = bookRepository.findByName(name);
+        byName.ifPresent(book -> bookRepository.delete(book));
     }
 
     public ResultMessage byBook(UserInfo info) {
