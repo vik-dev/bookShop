@@ -1,9 +1,9 @@
 package com.example.bookshop.controller;
 
 import com.example.bookshop.entity.Book;
-import com.example.bookshop.mesasages.BookForSave;
-import com.example.bookshop.mesasages.ResultMessage;
-import com.example.bookshop.mesasages.UserInfo;
+import com.example.bookshop.models.BookForSave;
+import com.example.bookshop.models.ResultMessage;
+import com.example.bookshop.models.UserInfo;
 import com.example.bookshop.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

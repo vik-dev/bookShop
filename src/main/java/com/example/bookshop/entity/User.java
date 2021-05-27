@@ -20,11 +20,11 @@ public class User {
     @Id
     @GeneratedValue
     @Column(unique = true)
-    private Integer id;
+    private Long id;
 
     private Double money;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String name;
 
 }

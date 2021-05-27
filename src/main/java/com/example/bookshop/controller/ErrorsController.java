@@ -1,7 +1,7 @@
 package com.example.bookshop.controller;
 
 import com.example.bookshop.enums.Errors;
-import com.example.bookshop.mesasages.ErrorMessage;
+import com.example.bookshop.models.ErrorMessage;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

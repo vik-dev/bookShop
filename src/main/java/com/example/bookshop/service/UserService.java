@@ -2,8 +2,8 @@ package com.example.bookshop.service;
 
 import com.example.bookshop.entity.User;
 import com.example.bookshop.enums.Errors;
-import com.example.bookshop.mesasages.ResultMessage;
-import com.example.bookshop.mesasages.UserForSave;
+import com.example.bookshop.models.ResultMessage;
+import com.example.bookshop.models.UserForSave;
 import com.example.bookshop.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

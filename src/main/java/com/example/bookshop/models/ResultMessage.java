@@ -1,4 +1,4 @@
-package com.example.bookshop.mesasages;
+package com.example.bookshop.models;
 
 import com.example.bookshop.enums.Errors;
 import com.fasterxml.jackson.annotation.JsonInclude;

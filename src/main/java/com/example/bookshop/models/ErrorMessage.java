@@ -1,4 +1,4 @@
-package com.example.bookshop.mesasages;
+package com.example.bookshop.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

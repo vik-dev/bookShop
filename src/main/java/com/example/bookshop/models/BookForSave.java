@@ -1,4 +1,4 @@
-package com.example.bookshop.mesasages;
+package com.example.bookshop.models;
 import com.example.bookshop.entity.Book;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
