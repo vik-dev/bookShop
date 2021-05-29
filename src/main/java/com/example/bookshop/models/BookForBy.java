@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class BookForBy {
     /**
-     * иеднтификатор книги
+     * идентификатор книги
      */
     private Long id;
     /**
