@@ -35,9 +35,9 @@ public class UserService {
 
     public void addMoneyToUser(UserForSave userForSave) throws UserException {
         List<BookServiceException> bookServiceExceptions = new ArrayList<>();
-        Optional<User> userOpt = userRepository.findById(userForSave.getId());
+        Optional<User> userOpt = userRepository.findUserByName(userForSave.getName());
         if (userOpt.isEmpty()) {
-            bookServiceExceptions.add(new UserNotFoundException(userForSave.getId()));
+            bookServiceExceptions.add(new UserNotFoundException(userForSave.getName()));
             throw new UserException(bookServiceExceptions);
         }
         var user = userOpt.get();
