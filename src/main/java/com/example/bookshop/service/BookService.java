@@ -67,7 +67,7 @@ public class BookService {
 
         List<Long> bookIds = info.getBooks().stream().map(BookForBy::getId).collect(Collectors.toList());
         List<Book> bookOpt = (List<Book>) bookRepository.findByIdIn(bookIds);
-        if (bookOpt.size() <= bookIds.size()) {
+        if (bookOpt.size() < bookIds.size()) {
             bookIds.removeAll(bookOpt.stream().map(Book::getId).collect(Collectors.toList()));
             bookServiceExceptions.add(new BookNotFoundException(bookIds));
             throw new UserException(bookServiceExceptions);
