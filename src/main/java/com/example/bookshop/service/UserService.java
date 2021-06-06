@@ -2,12 +2,17 @@ package com.example.bookshop.service;
 
 import com.example.bookshop.entity.User;
 import com.example.bookshop.enums.Errors;
+import com.example.bookshop.exceptions.UserException;
+import com.example.bookshop.exceptions.book_service_exceptions.BookServiceException;
+import com.example.bookshop.exceptions.book_service_exceptions.UserAlreadyExistsException;
+import com.example.bookshop.exceptions.book_service_exceptions.UserNotFoundException;
 import com.example.bookshop.models.ResultMessage;
 import com.example.bookshop.models.UserForSave;
 import com.example.bookshop.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,32 +23,30 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
-    public ResultMessage addUser(User userForSave) {
-        var resultMessage = new ResultMessage();
+    public void addUser(User userForSave) throws UserException {
+        List<BookServiceException> bookServiceExceptions = new ArrayList<>();
         Optional<User> user = userRepository.findUserByName(userForSave.getName());
         if (user.isPresent()) {
-            resultMessage.appendError(Errors.USER_ALREADY_EXISTS);
-            return resultMessage;
+            bookServiceExceptions.add(new UserAlreadyExistsException(user.get().getName()));
+            throw new UserException(bookServiceExceptions);
         }
         userRepository.save(userForSave);
-        return resultMessage;
     }
 
-    public ResultMessage addMoneyToUser(UserForSave userForSave) {
-        var resultMessage = new ResultMessage();
-        Optional<User> userOpt = userRepository.findUserByName(userForSave.getName());
+    public void addMoneyToUser(UserForSave userForSave) throws UserException {
+        List<BookServiceException> bookServiceExceptions = new ArrayList<>();
+        Optional<User> userOpt = userRepository.findById(userForSave.getId());
         if (userOpt.isEmpty()) {
-            resultMessage.appendError(Errors.USER_NOT_FOUND);
-            return resultMessage;
+            bookServiceExceptions.add(new UserNotFoundException(userForSave.getId()));
+            throw new UserException(bookServiceExceptions);
         }
-        User user = userOpt.get();
+        var user = userOpt.get();
         user.setMoney(user.getMoney() + userForSave.getMoney());
         userRepository.save(user);
-        return resultMessage;
     }
 
-    public User getUser(String name) {
-        return userRepository.findUserByName(name).orElse(new User());
+    public User getUser(String name) throws UserNotFoundException {
+        return userRepository.findUserByName(name).orElseThrow(() -> new UserNotFoundException(name));
     }
 
     public List<User> getAll() {

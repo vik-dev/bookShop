@@ -25,4 +25,9 @@ public enum Errors {
     public int getCode() {
         return code;
     }
+
+    @Override
+    public String toString() {
+        return String.format("error code - %d, description - %s", this.code, this.description);
+    }
 }

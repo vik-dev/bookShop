@@ -10,11 +10,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UserForSave {
     private double money;
-    private String name;
+    private Long id;
 
     public User convertToUser(){
         var user = new User();
-        user.setName(this.getName());
+        user.setId(this.getId());
         user.setMoney(this.getMoney());
         return user;
     }
